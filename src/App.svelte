@@ -51,10 +51,15 @@
       downloadLink = null;
     }
 
+    let packName = "stickers@2x.zip";
+    if (metadata.hasAnimation) {
+      packName = "stickerpack@2x.zip"
+    }
+
     try {
       const zipReader = new zip.ZipReader(
         new zip.HttpReader(
-          `https://stickershop.line-scdn.net/stickershop/v1/product/${stickerId}/iphone/stickers@2x.zip`
+          `https://stickershop.line-scdn.net/stickershop/v1/product/${stickerId}/iphone/${packName}`
         )
       );
       const zipWriter = new zip.ZipWriter(
@@ -63,15 +68,17 @@
       const entries = await zipReader.getEntries();
 
       for (const entry of entries) {
-        if (nameRegex.test(entry.filename)) {
-          const outFileName = nameRegex.exec(entry.filename)[1] + ".webp";
+        if (nameRegex.test(entry.filename) && (metadata.hasAnimation ? entry.filename.startsWith("animation") : true)) {
+          const fileName = nameRegex.exec(entry.filename)[1];
+          const inFileName = fileName + ".png";
+          const outFileName = fileName + ".webp";
           const stkWriter = new zip.BlobWriter();
           const stkBlob = await entry.getData(stkWriter);
           ffmpeg.isLoaded() || (await ffmpeg.load());
-          ffmpeg.FS("writeFile", entry.filename, await fetchFile(stkBlob));
+          ffmpeg.FS("writeFile", inFileName, await fetchFile(stkBlob));
           await ffmpeg.run(
             "-i",
-            entry.filename,
+            inFileName,
             "-vf",
             "crop=in_w-10:in_h-10,scale=w=512:h=512:force_original_aspect_ratio=1,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=black@0",
             outFileName
