@@ -7,7 +7,7 @@
 
   const ffmpeg = createFFmpeg({
     log: true,
-    corePath: "/ffmpeg-core.js"
+    corePath: "/ffmpeg-core.js",
   });
   const nameRegex = /(\d+)@2x\.png/;
 
@@ -54,7 +54,7 @@
 
     let packName = "stickers@2x.zip";
     if (metadata.hasAnimation) {
-      packName = "stickerpack@2x.zip"
+      packName = "stickerpack@2x.zip";
     }
 
     try {
@@ -69,7 +69,12 @@
       const entries = await zipReader.getEntries();
 
       for (const entry of entries) {
-        if (nameRegex.test(entry.filename) && (metadata.hasAnimation ? entry.filename.startsWith("animation") : true)) {
+        if (
+          nameRegex.test(entry.filename) &&
+          (metadata.hasAnimation
+            ? entry.filename.startsWith("animation")
+            : true)
+        ) {
           const fileName = nameRegex.exec(entry.filename)[1];
           const inFileName = fileName + ".png";
           const outFileName = fileName + ".webp";
@@ -87,7 +92,10 @@
             outFileName
           );
           const data = ffmpeg.FS("readFile", outFileName);
-          await zipWriter.add(`${sanitize(metadata.title.en)}/${outFileName}`, new zip.Uint8ArrayReader(data));
+          await zipWriter.add(
+            `${sanitize(metadata.title.en)}/${outFileName}`,
+            new zip.Uint8ArrayReader(data)
+          );
           ffmpeg.FS("unlink", outFileName);
           processedStk++;
         }
@@ -128,7 +136,7 @@
   {#if metadata}
     <br />
     <div>
-      <StickerDetail metadata={metadata} />
+      <StickerDetail {metadata} />
       <button on:click={convert} disabled={loading || null}
         >Convert to WhatsApp Sticker</button
       >
