@@ -1,5 +1,6 @@
 <script>
   import * as zip from "@zip.js/zip.js";
+  import sanitize from "sanitize-filename";
   import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
   import StickerDetail from "./lib/StickerDetail.svelte";
@@ -86,7 +87,7 @@
             outFileName
           );
           const data = ffmpeg.FS("readFile", outFileName);
-          await zipWriter.add(outFileName, new zip.Uint8ArrayReader(data));
+          await zipWriter.add(`${sanitize(metadata.title.en)}/${outFileName}`, new zip.Uint8ArrayReader(data));
           ffmpeg.FS("unlink", outFileName);
           processedStk++;
         }
