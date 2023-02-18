@@ -4,7 +4,10 @@
 
   import StickerDetail from "./lib/StickerDetail.svelte";
 
-  const ffmpeg = createFFmpeg({ log: true });
+  const ffmpeg = createFFmpeg({
+    log: true,
+    corePath: "/ffmpeg-core.js"
+  });
   const nameRegex = /(\d+)@2x\.png/;
 
   let isError = false;
