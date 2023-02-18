@@ -152,3 +152,11 @@
   {/if}
 </main>
 
+<style>
+  input {
+    padding: 8px;
+    border-radius: 8px;
+    border-style: solid;
+    width: 90%;
+  }
+</style>
