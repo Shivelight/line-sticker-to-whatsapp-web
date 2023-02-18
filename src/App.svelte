@@ -81,6 +81,8 @@
             inFileName,
             "-vf",
             "crop=in_w-10:in_h-10,scale=w=512:h=512:force_original_aspect_ratio=1,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=black@0",
+            "-quality",
+            "80",
             outFileName
           );
           const data = ffmpeg.FS("readFile", outFileName);
