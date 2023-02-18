@@ -16,6 +16,10 @@
   </a>
   <table width="100%">
     <tr>
+      <th>ID</th>
+      <td>{metadata.packageId}</td>
+    </tr>
+    <tr>
       <th>Title</th>
       <td>{metadata.title.en}</td>
     </tr>
