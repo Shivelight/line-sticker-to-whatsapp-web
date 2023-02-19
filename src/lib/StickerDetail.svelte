@@ -8,6 +8,8 @@
       return "ANIMATION";
     } else if (metadata.hasSound) {
       return "SOUND";
+    } else {
+      return "STATIC";
     }
   }
 </script>
