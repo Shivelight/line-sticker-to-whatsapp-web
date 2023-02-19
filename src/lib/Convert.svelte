@@ -9,6 +9,7 @@
     corePath: "/ffmpeg-core.js",
   });
   const nameRegex = /(\d+)@2x\.png/;
+  const urlRegex = /(?:product|sticker)\/([0-9]+)/;
 
   let isError = false;
   let errorMessage = "";
@@ -17,9 +18,18 @@
   $: if (loading) isError = false;
 
   let stickerId;
+  let stickerInput;
   let metadata;
   let processedStk = 0;
   let downloadLink;
+
+  $: {
+    if (urlRegex.test(stickerInput)) {
+      stickerId = urlRegex.exec(stickerInput)[1];
+    } else if (!isNaN(stickerInput)) {
+      stickerId = parseInt(stickerInput);
+    }
+  }
 
   async function getMetadata() {
     metadata = null;
@@ -117,8 +127,7 @@
 <form on:submit|preventDefault={getMetadata}>
   <input
     id="stk"
-    type="number"
-    bind:value={stickerId}
+    bind:value={stickerInput}
     placeholder="LINE sticker pack URL / ID"
     min="0"
     required
@@ -129,7 +138,7 @@
     <p style="color: red">{errorMessage}</p>
   {/if}
 
-  <button disabled={loading || null}>Get Data</button>
+  <button disabled={loading || !stickerId}>Get Data</button>
 </form>
 
 {#if metadata}
