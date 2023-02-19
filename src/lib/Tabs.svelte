@@ -25,7 +25,6 @@
     justify-content: space-evenly;
   }
   .tab.active {
-    border: none;
     color: #00b84f;
     border-bottom: 2px solid #00b84f;
   }
