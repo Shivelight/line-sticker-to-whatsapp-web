@@ -28,6 +28,8 @@
       stickerId = urlRegex.exec(stickerInput)[1];
     } else if (!isNaN(stickerInput)) {
       stickerId = parseInt(stickerInput);
+    } else {
+      stickerId = null;
     }
   }
 
@@ -127,6 +129,7 @@
 <form on:submit|preventDefault={getMetadata}>
   <input
     id="stk"
+    type="text"
     bind:value={stickerInput}
     placeholder="LINE sticker pack URL / ID"
     min="0"
