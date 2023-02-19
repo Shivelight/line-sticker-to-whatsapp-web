@@ -13,7 +13,6 @@
   let isError = false;
   let errorMessage = "";
   let loading = false;
-  let activePage = "help";
 
   $: if (loading) isError = false;
 
