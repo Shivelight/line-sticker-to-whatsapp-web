@@ -41,12 +41,17 @@
 <style>
   table {
     margin-bottom: 12px;
+    border-collapse: collapse;
   }
+
   th {
     text-align: right;
+    white-space: nowrap;
   }
+
   td {
     text-align: left;
-    padding: 0 15px;
+    padding-left: 1em;
+    overflow-wrap: anywhere;
   }
 </style>
