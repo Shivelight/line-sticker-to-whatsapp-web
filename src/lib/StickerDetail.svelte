@@ -1,5 +1,15 @@
 <script>
   export let metadata;
+
+  function assumeStickerResourceType() {
+    if (metadata.hasAnimation && metadata.hasSound) {
+      return "ANIMATION_SOUND";
+    } else if (metadata.hasAnimation) {
+      return "ANIMATION";
+    } else if (metadata.hasSound) {
+      return "SOUND";
+    }
+  }
 </script>
 
 <div>
@@ -29,7 +39,7 @@
     </tr>
     <tr>
       <th>Type</th>
-      <td>{metadata.stickerResourceType || "STATIC"}</td>
+      <td>{metadata.stickerResourceType ?? assumeStickerResourceType()}</td>
     </tr>
     <tr>
       <th># Stickers</th>
