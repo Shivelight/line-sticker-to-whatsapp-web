@@ -16,6 +16,12 @@
 </p>
 <h3>Android: What Next?</h3>
 <p>To install the sticker pack into WhatsApp, you need to extract the content of the downloaded <code>.zip</code> file first. Then you can use any of your favorite personal sticker maker to load the sticker pack, but if you don't have any, I recommend <a href="https://play.google.com/store/apps/details?id=com.dstukalov.walocalstoragestickers" target="_blank" rel=" noreferrer">Personal stickers for WhatsApp</a> because of its simplicity.</p>
+<div class="left">
+  <p>Video Tutorial:</p>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=83coYroy-cg" target="_blank" rel="noreferrer">README.md: LINE Sticker to WhatsApp Web Guide (Android)</a></li>
+  </ul>
+</div>
 <h3>iOS: What Next?</h3>
 <p style="font-style: italic;">TBD (I'm not an iOS user).</p>
 
