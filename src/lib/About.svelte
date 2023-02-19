@@ -1,5 +1,5 @@
 <p>
-  This tool allow you to download and convert <a href="https://line.me">LINE</a>
+  This tool allows you to download and convert <a href="https://line.me">LINE</a>
   sticker pack into <a href="https://www.whatsapp.com/">WhatsApp</a> sticker pack.
 </p>
 <div class="container">
