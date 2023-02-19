@@ -58,4 +58,9 @@
     word-wrap: break-word;
   }
 
+  @media (prefers-color-scheme: light) {
+    span {
+      color: #00b84f;
+    }
+  }
 </style>
