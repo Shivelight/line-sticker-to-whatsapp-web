@@ -6,7 +6,8 @@
 
   const ffmpeg = createFFmpeg({
     log: true,
-    corePath: "/ffmpeg-core.js",
+    // @ts-ignore
+    corePath: navigator.deviceMemory == 8 ? "/ffmpeg-core.js" : "/ffmpeg-500/ffmpeg-core.js",
   });
   const nameRegex = /(\d+)@2x\.png/;
   const urlRegex = /(?:product|sticker)\/([0-9]+)/;
@@ -121,6 +122,7 @@
       errorMessage = error;
       isError = true;
     } finally {
+      ffmpeg.exit();
       loading = false;
     }
   }
