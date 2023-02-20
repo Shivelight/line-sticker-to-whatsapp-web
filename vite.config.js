@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { execSync } from "child_process";
 
 const viteServerConfig = {
   name: "cors-sharredarraybuffer",
@@ -16,3 +17,7 @@ const viteServerConfig = {
 export default defineConfig({
   plugins: [svelte(), viteServerConfig],
 });
+
+process.env.VITE_GIT_COMMIT_HASH = execSync("git rev-parse --short HEAD")
+  .toString()
+  .trimEnd();

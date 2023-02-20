@@ -8,6 +8,8 @@
     >Source Code</a
   >
 </div>
+<br>
+<code class="version">git-{import.meta.env.VITE_GIT_COMMIT_HASH}</code>
 
 <style>
   p {
@@ -19,4 +21,9 @@
     display: flex;
     justify-content: space-evenly;
   }
+
+  .version {
+    color: gray;
+  }
+
 </style>
