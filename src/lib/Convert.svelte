@@ -72,7 +72,8 @@
     try {
       const zipReader = new zip.ZipReader(
         new zip.HttpReader(
-          `https://stickershop.line-scdn.net/stickershop/v1/product/${stickerId}/iphone/${packName}`
+          `https://stickershop.line-scdn.net/stickershop/v1/product/${stickerId}/iphone/${packName}`,
+          {preventHeadRequest: true}
         )
       );
       const zipWriter = new zip.ZipWriter(
